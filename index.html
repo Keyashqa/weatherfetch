@@ -61,7 +61,7 @@
         async function api(){
         cityname=document.querySelector('.apifetch').value;
          
-        url = `http://api.weatherapi.com/v1/current.json?key=34ac9a339e7c48229b261128252302&q=${cityname}&aqi=no`;
+        url = `https://api.weatherapi.com/v1/current.json?key=34ac9a339e7c48229b261128252302&q=${cityname}&aqi=no`;
         let results = await fetch(url);
         let data= await results.json();
         console.log(data);
