@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Fetch</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            color: #fff;
+        }
+        input {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        button {
+            padding: 10px;
+            background: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .weather-info {
+            margin-top: 20px;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Weather Fetch</h1>
+        <input type="text" id="search" placeholder="Enter city name..." class="apifetch">
+        <button onclick="api()">Search</button>
+        <div class="weather-info">
+            <h2 id="city">City Name</h2>
+            <p id="state"></p>
+            <h3 id="temperature">--°C</h3>
+        </div>
+    </div>
+    <script>
+        
+
+        async function api(){
+        cityname=document.querySelector('.apifetch').value;
+         
+        url = `http://api.weatherapi.com/v1/current.json?key=34ac9a339e7c48229b261128252302&q=${cityname}&aqi=no`;
+        let results = await fetch(url);
+        let data= await results.json();
+        console.log(data);
+        document.getElementById('city').innerHTML=`${cityname}`;
+        document.getElementById('temperature').innerHTML=`${data.current.temp_c}`;
+        document.getElementById('state').innerHTML=`${data.location.region}`;
+        }
+        
+        
+
+
+    </script>
+</body>
+</html>
